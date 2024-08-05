@@ -4,8 +4,9 @@
 #include "led_map.c"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_COLEMAK] = LAYOUT_voyager(
 //    ┌──────────┬───┬───┬─────────┬───────┬────────┐                     ┌──────────┬──────┬────────┬───────┬───┬───────────┐
-//    │   esc    │ [ │ ( │    -    │   )   │   ]    │                     │    <     │  /   │   ?    │   \   │ ; │ KEYB_BSPC │
+//    │   esc    │ [ │ ( │    -    │   )   │   ]    │                     │    <     │  /   │   ?    │   \   │ ; │   bspc    │
 //    ├──────────┼───┼───┼─────────┼───────┼────────┤                     ├──────────┼──────┼────────┼───────┼───┼───────────┤
 //    │    `     │ q │ w │    f    │   p   │   g    │                     │    j     │  l   │   u    │   y   │ = │ ESC_COLON │
 //    ├──────────┼───┼───┼─────────┼───────┼────────┤                     ├──────────┼──────┼────────┼───────┼───┼───────────┤
@@ -15,14 +16,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └──────────┴───┴───┴─────────┴───────┼────────┼──────┐   ┌──────────┼──────────┼──────┴────────┴───────┴───┴───────────┘
 //                                         │ APP_SP │ lsft │   │ rght_GUI │ CTL_ENTR │
 //                                         └────────┴──────┘   └──────────┴──────────┘
-[_COLEMAK] = LAYOUT_voyager(
-  KC_ESCAPE   , KC_LBRC , KC_LPRN , KC_MINUS , KC_RPRN , KC_RBRC ,                              KC_LABK  , KC_SLASH , KC_QUES  , KC_BSLS , KC_SCLN  , KEYB_BSPC,
+  KC_ESCAPE   , KC_LBRC , KC_LPRN , KC_MINUS , KC_RPRN , KC_RBRC ,                              KC_LABK  , KC_SLASH , KC_QUES  , KC_BSLS , KC_SCLN  , KC_BSPC  ,
   KC_GRAVE    , KC_Q    , KC_W    , KC_F     , KC_P    , KC_G    ,                              KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , ESC_COLON,
   KC_PLUS     , KC_A    , KC_R    , MOUSE_S  , TXT_T   , KC_D    ,                              KC_H     , NP_N     , CODE_P   , FNC_I   , KC_O     , KC_QUOTE ,
   KC_LEFT_ALT , KC_Z    , KC_X    , KC_C     , KC_V    , KC_B    ,                              KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM  ,
                                                          APP_SP  , KC_LSFT ,     KC_RIGHT_GUI , CTL_ENTR
 ),
 
+[_CODE_PUNC] = LAYOUT_voyager(
 //    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
 //    │     │     │     │     │     │     │               │     │     │     │     │     │     │
 //    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -34,7 +35,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └─────┴─────┴─────┴─────┴─────┼─────┼─────┐   ┌─────┼─────┼─────┴─────┴─────┴─────┴─────┘
 //                                  │     │     │   │     │     │
 //                                  └─────┴─────┘   └─────┴─────┘
-[_CODE_PUNC] = LAYOUT_voyager(
   _______ , _______ , _______ , _______ , _______ , _______  ,                         _______ , _______ , _______ , _______ , _______ , _______,
   _______ , KC_QUES , KC_ASTR , KC_HASH , KC_PERC , KC_PLUS  ,                         _______ , _______ , _______ , _______ , _______ , _______,
   _______ , KC_AT   , KC_AMPR , KC_DLR  , KC_TILD , KC_MINUS ,                         KC_CIRC , _______ , _______ , _______ , _______ , _______,
@@ -42,25 +42,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     _______  , _______ ,     _______ , _______
 ),
 
-//    ┌─────┬─────┬─────┬─────┬─────┬──────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
-//    │     │     │     │     │     │      │               │     │     │  `  │     │     │     │
-//    ├─────┼─────┼─────┼─────┼─────┼──────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │  *  │  7  │  8  │  9  │  +   │               │     │     │  ^  │  &  │     │     │
-//    ├─────┼─────┼─────┼─────┼─────┼──────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │  /  │  4  │  5  │  6  │  -   │               │     │     │  $  │  ~  │  |  │     │
-//    ├─────┼─────┼─────┼─────┼─────┼──────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │  %  │  1  │  2  │  3  │ calc │               │     │  %  │     │     │     │     │
-//    └─────┴─────┴─────┴─────┴─────┼──────┼─────┐   ┌─────┼─────┼─────┴─────┴─────┴─────┴─────┘
-//                                  │  0   │     │   │     │     │
-//                                  └──────┴─────┘   └─────┴─────┘
 [_NUMPAD] = LAYOUT_voyager(
-  _______ , _______  , _______ , _______ , _______ , _______       ,                         _______ , _______ , KC_GRAVE , _______ , _______ , _______,
-  _______ , KC_ASTR  , KC_7    , KC_8    , KC_9    , KC_PLUS       ,                         _______ , _______ , KC_CIRC  , KC_AMPR , _______ , _______,
-  _______ , KC_SLASH , KC_4    , KC_5    , KC_6    , KC_MINUS      ,                         _______ , _______ , KC_DLR   , KC_TILD , KC_PIPE , _______,
-  _______ , KC_PERC  , KC_1    , KC_2    , KC_3    , KC_CALCULATOR ,                         _______ , KC_PERC , _______  , _______ , _______ , _______,
-                                                     KC_0          , _______ ,     _______ , _______
+//    ┌────┬────┬────┬────┬────┬──────┐             ┌────┬────┬────┬────┬────┬────┐
+//    │ no │ no │ no │ no │ no │  no  │             │ no │ no │ `  │ no │ no │ no │
+//    ├────┼────┼────┼────┼────┼──────┤             ├────┼────┼────┼────┼────┼────┤
+//    │ no │ *  │ 7  │ 8  │ 9  │  +   │             │ no │ no │ ^  │ &  │ no │ no │
+//    ├────┼────┼────┼────┼────┼──────┤             ├────┼────┼────┼────┼────┼────┤
+//    │ no │ /  │ 4  │ 5  │ 6  │  -   │             │ no │ no │ $  │ ~  │ |  │ no │
+//    ├────┼────┼────┼────┼────┼──────┤             ├────┼────┼────┼────┼────┼────┤
+//    │ no │ %  │ 1  │ 2  │ 3  │ calc │             │ no │ %  │ no │ no │ no │ no │
+//    └────┴────┴────┴────┴────┼──────┼────┐   ┌────┼────┼────┴────┴────┴────┴────┘
+//                             │  0   │ no │   │ no │ no │
+//                             └──────┴────┘   └────┴────┘
+  KC_NO , KC_NO    , KC_NO , KC_NO , KC_NO , KC_NO         ,                     KC_NO , KC_NO   , KC_GRAVE , KC_NO   , KC_NO   , KC_NO,
+  KC_NO , KC_ASTR  , KC_7  , KC_8  , KC_9  , KC_PLUS       ,                     KC_NO , KC_NO   , KC_CIRC  , KC_AMPR , KC_NO   , KC_NO,
+  KC_NO , KC_SLASH , KC_4  , KC_5  , KC_6  , KC_MINUS      ,                     KC_NO , KC_NO   , KC_DLR   , KC_TILD , KC_PIPE , KC_NO,
+  KC_NO , KC_PERC  , KC_1  , KC_2  , KC_3  , KC_CALCULATOR ,                     KC_NO , KC_PERC , KC_NO    , KC_NO   , KC_NO   , KC_NO,
+                                             KC_0          , KC_NO ,     KC_NO , KC_NO
 ),
 
+[_TXT_NAV] = LAYOUT_voyager(
 //    ┌────┬────┬────┬────┬────┬────┐             ┌─────────┬───────────┬─────────┬──────┬────┬────┐
 //    │ no │ no │ no │ no │ no │ no │             │   no    │    no     │ LGUI(b) │  no  │ no │ no │
 //    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼─────────┼──────┼────┼────┤
@@ -72,7 +73,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼─────────┼───────────┴─────────┴──────┴────┴────┘
 //                             │ no │ no │   │ no │   no    │
 //                             └────┴────┘   └────┴─────────┘
-[_TXT_NAV] = LAYOUT_voyager(
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO      , KC_NO        , LGUI(KC_B) , KC_NO    , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PAGE_UP , LSFT(KC_TAB) , KC_UP      , KC_TAB   , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PGDN    , KC_LEFT      , KC_DOWN    , KC_RIGHT , KC_NO , KC_NO,
@@ -80,6 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           KC_NO , KC_NO ,     KC_NO , KC_NO
 ),
 
+[_MOUSE] = LAYOUT_voyager(
 //    ┌────┬────┬────┬────┬────┬────┐               ┌────────────┬─────────┬──────┬─────────┬────┬────┐
 //    │ no │ no │ no │ no │ no │ no │               │     no     │  wh_l   │ btn3 │  wh_r   │ no │ no │
 //    ├────┼────┼────┼────┼────┼────┤               ├────────────┼─────────┼──────┼─────────┼────┼────┤
@@ -91,7 +92,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └────┴────┴────┴────┴────┼────┼────┐   ┌──────┼────────────┼─────────┴──────┴─────────┴────┴────┘
 //                             │ no │ no │   │ btn1 │    btn2    │
 //                             └────┴────┘   └──────┴────────────┘
-[_MOUSE] = LAYOUT_voyager(
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                          KC_NO          , KC_MS_WH_LEFT , KC_MS_BTN3 , KC_MS_WH_RIGHT , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                          KC_MS_WH_UP    , KC_MS_BTN1    , KC_MS_UP   , KC_MS_BTN2     , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                          KC_MS_WH_DOWN  , KC_MS_LEFT    , KC_MS_DOWN , KC_MS_RIGHT    , KC_NO , KC_NO,
@@ -99,6 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           KC_NO , KC_NO ,     KC_MS_BTN1 , KC_MS_BTN2
 ),
 
+[_APP] = LAYOUT_voyager(
 //    ┌────┬────────┬──────────┬────────┬──────────┬───────────┐               ┌─────────┬─────────┬─────────┬─────────┬───────────┬────┐
 //    │ no │   no   │ PREV_TAB │   no   │ NXT_TAB  │    no     │               │   no    │ PRV_WIN │ MSN_CTL │ NXT_WIN │    no     │ no │
 //    ├────┼────────┼──────────┼────────┼──────────┼───────────┤               ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
@@ -110,7 +111,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └────┴────────┴──────────┴────────┴──────────┼───────────┼────┐   ┌──────┼─────────┼─────────┴─────────┴─────────┴───────────┴────┘
 //                                                 │    no     │ no │   │ paus │ PLAY_PS │
 //                                                 └───────────┴────┘   └──────┴─────────┘
-[_APP] = LAYOUT_voyager(
   KC_NO , KC_NO  , PREV_TAB , KC_NO  , NXT_TAB  , KC_NO     ,                        KC_NO   , PRV_WIN , MSN_CTL , NXT_WIN , KC_NO     , KC_NO,
   KC_NO , KC_NO  , WEBSTORM , FINDER , PYCHARM  , SPOTIFY   ,                        VOL_UP  , LFT_HLF , FLL_SCR , RGT_HLF , KC_NO     , KC_NO,
   KC_NO , LINEAR , POSTMAN  , SLACK  , TERMINAL , DATAGRIP  ,                        VOL_DN  , LFT_23  , CNTR    , RGT_23  , ALACRITTY , KC_NO,
@@ -118,6 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_NO     , KC_NO ,     KC_PAUSE , PLAY_PS
 ),
 
+[_FUNC] = LAYOUT_voyager(
 //    ┌────┬────┬─────┬─────┬─────┬────┐             ┌────┬────┬────┬────┬────┬────┐
 //    │ no │ no │ f10 │ f11 │ f12 │ no │             │ no │ no │ no │ no │ no │ no │
 //    ├────┼────┼─────┼─────┼─────┼────┤             ├────┼────┼────┼────┼────┼────┤
@@ -129,7 +130,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └────┴────┴─────┴─────┴─────┼────┼────┐   ┌────┼────┼────┴────┴────┴────┴────┘
 //                                │ no │ no │   │ no │ no │
 //                                └────┴────┘   └────┴────┘
-[_FUNC] = LAYOUT_voyager(
   KC_NO , KC_NO , KC_F10 , KC_F11 , KC_F12 , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_F7  , KC_F8  , KC_F9  , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_F4  , KC_F5  , KC_F6  , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
@@ -137,6 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              KC_NO , KC_NO ,     KC_NO , KC_NO
 ),
 
+[_KEYB] = LAYOUT_voyager(
 //    ┌────┬────┬────┬────┬────┬────┐             ┌────┬────┬────┬────┬────┬────┐
 //    │ no │ no │ no │ no │ no │ no │             │ no │ no │ no │ no │ no │ no │
 //    ├────┼────┼────┼────┼────┼────┤             ├────┼────┼────┼────┼────┼────┤
@@ -148,7 +149,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼────┼────┴────┴────┴────┴────┘
 //                             │ no │ no │   │ no │ no │
 //                             └────┴────┘   └────┴────┘
-[_KEYB] = LAYOUT_voyager(
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
   KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
