@@ -1,5 +1,7 @@
 
 #define MOON_LED_LEVEL LED_LEVEL
+#define PERMISSIVE_HOLD
+#define HOLD_ON_OTHER_KEY_PRESS
 
 enum custom_keycodes {
     RGB_SLD = ML_SAFE_RANGE,
@@ -43,20 +45,23 @@ enum custom_keycodes {
 
 #define MOUSE_S LT(_MOUSE, KC_S)
 #define TXT_T LT(_TXT_NAV, KC_T)
+
 #define NP_N LT(_NUMPAD, KC_N)
 #define CODE_P LT(_CODE_PUNC, KC_E)
+#define NC_SPACE LT(_NUMPAD, KC_SPACE)
+
 #define FNC_I LT(_FUNC, KC_I)
-#define APP_SP LT(_APP, KC_SPACE)
-#define CTL_ENTR MT(MOD_LCTL,KC_ENTER)
+#define APP_E LT(_APP, KC_E)
+#define CTL_ENTR MT(MOD_LCTL, KC_ENTER)
 #define KEYB_BSPC LT(_KEYB, KC_BSPC)
 
 enum voyager_layers {
     _COLEMAK,
-    _CODE_PUNC,
     _NUMPAD,
     _TXT_NAV,
     _MOUSE,
     _APP,
     _FUNC,
-    _KEYB
+    _KEYB,
 };
+

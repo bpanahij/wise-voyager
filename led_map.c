@@ -13,19 +13,6 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         {HSV_CORAL}, {HSV_CORAL}, {HSV_BLUE}, {HSV_BLUE}, {HSV_BLUE}, {HSV_BLUE},
         {HSV_BLUE}, {HSV_BLUE},
     },
-    [_CODE_PUNC] = {
-        {HSV_OFF}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL},
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL},
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL},
-        {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_CORAL}, {HSV_CORAL}, {HSV_OFF},
-        {HSV_OFF}, {HSV_OFF},
-
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_OFF},
-        {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_CORAL}, {HSV_CORAL},
-        {HSV_CORAL}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_CORAL},
-        {HSV_OFF}, {HSV_OFF}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL},
-        {HSV_OFF}, {HSV_OFF},
-    },
     [_NUMPAD] = {
         {HSV_AZURE}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL},
         {HSV_CORAL}, {HSV_CORAL}, {HSV_TEAL}, {HSV_TEAL}, {HSV_TEAL}, {HSV_CORAL},
@@ -46,10 +33,10 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF},
         {HSV_OFF}, {HSV_OFF},
 
-        {HSV_OFF}, {HSV_OFF}, {HSV_CORAL}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF},
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_OFF}, {HSV_OFF},
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_OFF}, {HSV_OFF},
-        {HSV_CORAL}, {HSV_CORAL}, {HSV_CORAL}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF},
+        {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF},
+        {HSV_CORAL}, {HSV_CORAL}, {HSV_BLUE}, {HSV_CORAL}, {HSV_OFF}, {HSV_OFF},
+        {HSV_CORAL}, {HSV_BLUE}, {HSV_BLUE}, {HSV_BLUE}, {HSV_OFF}, {HSV_OFF},
+        {HSV_OFF}, {HSV_OFF}, {HSV_BLUE}, {HSV_OFF}, {HSV_OFF}, {HSV_OFF},
         {HSV_OFF}, {HSV_OFF}
     },
     [_MOUSE] = {
@@ -132,9 +119,6 @@ bool rgb_matrix_indicators_user(void) {
     switch (biton32(layer_state)) {
         case _COLEMAK:
             set_layer_color(_COLEMAK);
-            break;
-        case _CODE_PUNC:
-            set_layer_color(_CODE_PUNC);
             break;
         case _NUMPAD:
             set_layer_color(_NUMPAD);
