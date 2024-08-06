@@ -56,13 +56,13 @@ void gui_app_finished(tap_dance_state_t *state, void *user_data) {
     ql_tap_state.state = cur_dance(state);
     switch(ql_tap_state.state) {
         case SINGLE_TAP:
-            /* register_code(KC_UNDS); */
+            /* tap_code17(KC_UNDS); */
             break;
         case SINGLE_HOLD:
             register_mods(MOD_BIT(KC_RIGHT_GUI));
             break;
         case DOUBLE_SINGLE_TAP:
-            tap_code16(KC_LPRN);
+            tap_code17(KC_LPRN);
             break;
         case DOUBLE_HOLD:
             layer_on(_APP);
@@ -76,7 +76,6 @@ void gui_app_reset(tap_dance_state_t *state, void *user_data) {
     }
     switch(ql_tap_state.state) {
         case SINGLE_TAP:
-            /* unregister_code(KC_UNDS); */
             break;
         case SINGLE_HOLD:
             unregister_mods(MOD_BIT(KC_RIGHT_GUI));
@@ -95,21 +94,21 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬────┬─────────┬───────┬──────────┐                        ┌──────────┬────┬────┬───────┬────┬───────────┐
-//    │   esc    │ no │ no │   no    │  no   │    no    │                        │    no    │ no │ no │  no   │ no │   bspc    │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼────┼────┼───────┼────┼───────────┤
-//    │    no    │ q  │ w  │    f    │   p   │    g     │                        │    j     │ l  │ u  │   y   │ no │ ESC_COLON │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼────┼────┼───────┼────┼───────────┤
-//    │    no    │ a  │ r  │ MOUSE_S │ TXT_T │    d     │                        │    h     │ n  │ e  │ FNC_I │ o  │    no     │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼────┼────┼───────┼────┼───────────┤
-//    │ left_ALT │ z  │ x  │    c    │   v   │    b     │                        │    k     │ m  │ ,  │   .   │ /  │     !     │
-//    └──────────┴────┴────┴─────────┴───────┼──────────┼──────┐   ┌─────────────┼──────────┼────┴────┴───────┴────┴───────────┘
+//    ┌──────────┬────┬────┬─────────┬───────┬──────────┐                        ┌──────────┬───┬───┬───────┬───┬───────────┐
+//    │   esc    │ no │ no │   no    │  no   │    no    │                        │    *     │ ` │ / │   \   │ % │   bspc    │
+//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
+//    │    no    │ q  │ w  │    f    │   p   │    g     │                        │    j     │ l │ u │   y   │ = │ ESC_COLON │
+//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
+//    │    no    │ a  │ r  │ MOUSE_S │ TXT_T │    d     │                        │    h     │ n │ e │ FNC_I │ o │     '     │
+//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
+//    │ left_ALT │ z  │ x  │    c    │   v   │    b     │                        │    k     │ m │ , │   .   │ / │     !     │
+//    └──────────┴────┴────┴─────────┴───────┼──────────┼──────┐   ┌─────────────┼──────────┼───┴───┴───────┴───┴───────────┘
 //                                           │ NC_SPACE │ lsft │   │ TD(GUI_APP) │ CTL_ENTR │
 //                                           └──────────┴──────┘   └─────────────┴──────────┘
-  KC_ESCAPE   , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO    ,                             KC_NO    , KC_NO , KC_NO    , KC_NO  , KC_NO    , KC_BSPC  ,
-  KC_NO       , KC_Q  , KC_W  , KC_F    , KC_P  , KC_G     ,                             KC_J     , KC_L  , KC_U     , KC_Y   , KC_NO    , ESC_COLON,
-  KC_NO       , KC_A  , KC_R  , MOUSE_S , TXT_T , KC_D     ,                             KC_H     , KC_N  , KC_E     , FNC_I  , KC_O     , KC_NO    ,
-  KC_LEFT_ALT , KC_Z  , KC_X  , KC_C    , KC_V  , KC_B     ,                             KC_K     , KC_M  , KC_COMMA , KC_DOT , KC_SLASH , KC_EXLM  ,
+  KC_ESCAPE   , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO    ,                             KC_ASTR  , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC  ,
+  KC_NO       , KC_Q  , KC_W  , KC_F    , KC_P  , KC_G     ,                             KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , ESC_COLON,
+  KC_NO       , KC_A  , KC_R  , MOUSE_S , TXT_T , KC_D     ,                             KC_H     , KC_N     , KC_E     , FNC_I   , KC_O     , KC_QUOTE ,
+  KC_LEFT_ALT , KC_Z  , KC_X  , KC_C    , KC_V  , KC_B     ,                             KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM  ,
                                                   NC_SPACE , KC_LSFT ,     TD(GUI_APP) , CTL_ENTR
 ),
 
