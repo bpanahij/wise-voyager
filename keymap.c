@@ -3,113 +3,24 @@
 #include "wise_voyager.h"
 #include "led_map.c"
 
-enum {
-    GUI_APP,
-};
-
-typedef struct {
-    bool is_press_action;
-    int state;
-} tap;
-
-enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD = 2,
-    DOUBLE_SINGLE_TAP = 3,
-    DOUBLE_HOLD = 4,
-};
-
-
-static tap ql_tap_state = {
-    .is_press_action = true,
-    .state = 0
-};
-
-int cur_dance (tap_dance_state_t *state);
-void gui_app_finished(tap_dance_state_t *state, void *user_data);
-void gui_app_reset(tap_dance_state_t *state, void *user_data);
-
-int cur_dance(tap_dance_state_t *state) {
-    if(state->count == 1) {
-        if (state->interrupted || !state->pressed) {
-            return SINGLE_TAP ;
-        }
-        else {
-            return SINGLE_HOLD;
-        }
-    }
-    if(state->count == 2) {
-        if (state->interrupted || !state->pressed) {
-            return DOUBLE_SINGLE_TAP ;
-        }
-        else {
-            return DOUBLE_HOLD;
-        }
-    }
-    else {
-        return 3;
-    }
-}
-
-
-void gui_app_finished(tap_dance_state_t *state, void *user_data) {
-    ql_tap_state.state = cur_dance(state);
-    switch(ql_tap_state.state) {
-        case SINGLE_TAP:
-            /* tap_code17(KC_UNDS); */
-            break;
-        case SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_RIGHT_GUI));
-            break;
-        case DOUBLE_SINGLE_TAP:
-            tap_code17(KC_LPRN);
-            break;
-        case DOUBLE_HOLD:
-            layer_on(_APP);
-            break;
-    }
-}
-
-void gui_app_reset(tap_dance_state_t *state, void *user_data) {
-    if (ql_tap_state.state == DOUBLE_HOLD) {
-        layer_off(_APP);
-    }
-    switch(ql_tap_state.state) {
-        case SINGLE_TAP:
-            break;
-        case SINGLE_HOLD:
-            unregister_mods(MOD_BIT(KC_RIGHT_GUI));
-            break;
-        case DOUBLE_SINGLE_TAP:
-            break;
-        case DOUBLE_HOLD:
-            break;
-    }
-    ql_tap_state.state = 0;
-}
-
-tap_dance_action_t tap_dance_actions[] = {
-    [GUI_APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gui_app_finished, gui_app_reset)
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬────┬─────────┬───────┬──────────┐                        ┌──────────┬───┬───┬───────┬───┬───────────┐
-//    │   esc    │ no │ no │   no    │  no   │    no    │                        │    *     │ ` │ / │   \   │ % │   bspc    │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
-//    │    no    │ q  │ w  │    f    │   p   │    g     │                        │    j     │ l │ u │   y   │ = │ ESC_COLON │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
-//    │    no    │ a  │ r  │ MOUSE_S │ TXT_T │    d     │                        │    h     │ n │ e │ FNC_I │ o │     '     │
-//    ├──────────┼────┼────┼─────────┼───────┼──────────┤                        ├──────────┼───┼───┼───────┼───┼───────────┤
-//    │ left_ALT │ z  │ x  │    c    │   v   │    b     │                        │    k     │ m │ , │   .   │ / │     !     │
-//    └──────────┴────┴────┴─────────┴───────┼──────────┼──────┐   ┌─────────────┼──────────┼───┴───┴───────┴───┴───────────┘
-//                                           │ NC_SPACE │ lsft │   │ TD(GUI_APP) │ CTL_ENTR │
-//                                           └──────────┴──────┘   └─────────────┴──────────┘
-  KC_ESCAPE   , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO    ,                             KC_ASTR  , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC  ,
-  KC_NO       , KC_Q  , KC_W  , KC_F    , KC_P  , KC_G     ,                             KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , ESC_COLON,
-  KC_NO       , KC_A  , KC_R  , MOUSE_S , TXT_T , KC_D     ,                             KC_H     , KC_N     , KC_E     , FNC_I   , KC_O     , KC_QUOTE ,
-  KC_LEFT_ALT , KC_Z  , KC_X  , KC_C    , KC_V  , KC_B     ,                             KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM  ,
-                                                  NC_SPACE , KC_LSFT ,     TD(GUI_APP) , CTL_ENTR
+//    ┌──────────┬────┬───┬───────────┬───────────┬──────────┐                        ┌──────────┬───┬───┬───┬───┬──────┐
+//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │    no    │                        │    *     │ ` │ / │ \ │ % │ bspc │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
+//    │    no    │ q  │ w │     f     │     p     │    g     │                        │    j     │ l │ u │ y │ = │  :   │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
+//    │   esc    │ a  │ r │  MOUSE_S  │   TXT_T   │    d     │                        │    h     │ n │ e │ i │ o │  '   │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
+//    │ left_ALT │ z  │ x │     c     │     v     │    b     │                        │    k     │ m │ , │ . │ / │  !   │
+//    └──────────┴────┴───┴───────────┴───────────┼──────────┼──────┐   ┌─────────────┼──────────┼───┴───┴───┴───┴──────┘
+//                                                │ NC_SPACE │ lsft │   │ TD(GUI_APP) │ CTL_ENTR │
+//                                                └──────────┴──────┘   └─────────────┴──────────┘
+  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , KC_NO    ,                             KC_ASTR  , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
+  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                             KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
+  KC_ESCAPE   , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                             KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
+  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                             KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
+                                                          NC_SPACE , KC_LSFT ,     TD(GUI_APP) , CTL_ENTR
 ),
 
 [_NUMPAD] = LAYOUT_voyager(
@@ -237,8 +148,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case APP_E:
             return TAPPING_TERM + 75;
         case NC_SPACE:
-            return TAPPING_TERM + 75;
-        case FNC_I:
             return TAPPING_TERM + 75;
         default:
             return TAPPING_TERM;

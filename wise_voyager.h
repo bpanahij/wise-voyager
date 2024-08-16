@@ -50,7 +50,7 @@ enum custom_keycodes {
 #define CODE_P LT(_CODE_PUNC, KC_E)
 #define NC_SPACE LT(_NUMPAD, KC_SPACE)
 
-#define FNC_I LT(_FUNC, KC_I)
+#define FNC_MINUS LT(_FUNC, KC_MINUS)
 #define APP_E LT(_APP, KC_E)
 #define CTL_ENTR MT(MOD_LCTL, KC_ENTER)
 #define KEYB_BSPC LT(_KEYB, KC_BSPC)
@@ -65,3 +65,97 @@ enum voyager_layers {
     _KEYB,
 };
 
+
+enum {
+    GUI_APP,
+    ESC_I,
+};
+
+typedef struct {
+    bool is_press_action;
+    int state;
+} tap;
+
+enum {
+    SINGLE_TAP = 1,
+    SINGLE_HOLD = 2,
+    DOUBLE_SINGLE_TAP = 3,
+    DOUBLE_HOLD = 4,
+};
+
+static tap ql_tap_state = {
+    .is_press_action = true,
+    .state = 0
+};
+
+int cur_dance (tap_dance_state_t *state);
+void gui_app_finished(tap_dance_state_t *state, void *user_data);
+void gui_app_reset(tap_dance_state_t *state, void *user_data);
+
+int cur_dance(tap_dance_state_t *state) {
+    if(state->count == 1) {
+        if (state->interrupted || !state->pressed) {
+            return SINGLE_TAP ;
+        }
+        else {
+            return SINGLE_HOLD;
+        }
+    }
+    if(state->count == 2) {
+        if (state->interrupted || !state->pressed) {
+            return DOUBLE_SINGLE_TAP ;
+        }
+        else {
+            return DOUBLE_HOLD;
+        }
+    }
+    else {
+        return 3;
+    }
+}
+
+// ================================================
+// ================================================
+// GUI_APP key
+
+void gui_app_finished(tap_dance_state_t *state, void *user_data) {
+    ql_tap_state.state = cur_dance(state);
+    switch(ql_tap_state.state) {
+        case SINGLE_TAP:
+            /* tap_code17(KC_UNDS); */
+            break;
+        case SINGLE_HOLD:
+            register_mods(MOD_BIT(KC_RIGHT_GUI));
+            break;
+        case DOUBLE_SINGLE_TAP:
+            tap_code16(KC_LPRN);
+            break;
+        case DOUBLE_HOLD:
+            layer_on(_APP);
+            break;
+    }
+}
+
+void gui_app_reset(tap_dance_state_t *state, void *user_data) {
+    if (ql_tap_state.state == DOUBLE_HOLD) {
+        layer_off(_APP);
+    }
+    switch(ql_tap_state.state) {
+        case SINGLE_TAP:
+            break;
+        case SINGLE_HOLD:
+            unregister_mods(MOD_BIT(KC_RIGHT_GUI));
+            break;
+        case DOUBLE_SINGLE_TAP:
+            break;
+        case DOUBLE_HOLD:
+            break;
+    }
+    ql_tap_state.state = 0;
+}
+// ================================================
+//
+
+tap_dance_action_t tap_dance_actions[] = {
+    [GUI_APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gui_app_finished, gui_app_reset)
+};
