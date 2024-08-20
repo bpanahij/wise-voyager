@@ -5,40 +5,40 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬───┬───────────┬───────────┬──────────┐                        ┌──────────┬───┬───┬───┬───┬──────┐
-//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │    no    │                        │    *     │ ` │ / │ \ │ % │ bspc │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
-//    │    no    │ q  │ w │     f     │     p     │    g     │                        │    j     │ l │ u │ y │ = │  :   │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
-//    │   esc    │ a  │ r │  MOUSE_S  │   TXT_T   │    d     │                        │    h     │ n │ e │ i │ o │  '   │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                        ├──────────┼───┼───┼───┼───┼──────┤
-//    │ left_ALT │ z  │ x │     c     │     v     │    b     │                        │    k     │ m │ , │ . │ / │  !   │
-//    └──────────┴────┴───┴───────────┴───────────┼──────────┼──────┐   ┌─────────────┼──────────┼───┴───┴───┴───┴──────┘
-//                                                │ NC_SPACE │ lsft │   │ TD(GUI_APP) │ CTL_ENTR │
-//                                                └──────────┴──────┘   └─────────────┴──────────┘
-  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , KC_NO    ,                             KC_ASTR  , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
-  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                             KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
-  KC_ESCAPE   , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                             KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
-  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                             KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
-                                                          NC_SPACE , KC_LSFT ,     TD(GUI_APP) , CTL_ENTR
+//    ┌──────────┬────┬───┬───────────┬───────────┬──────────┐                 ┌─────────────┬───┬───┬───┬───┬──────┐
+//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │ TG(_APP) │                 │ TG(_NUMPAD) │ ` │ / │ \ │ % │ bspc │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
+//    │    no    │ q  │ w │     f     │     p     │    g     │                 │      j      │ l │ u │ y │ = │  :   │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
+//    │   lctl   │ a  │ r │  MOUSE_S  │   TXT_T   │    d     │                 │      h      │ n │ e │ i │ o │  '   │
+//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
+//    │ left_ALT │ z  │ x │     c     │     v     │    b     │                 │      k      │ m │ , │ . │ / │  !   │
+//    └──────────┴────┴───┴───────────┴───────────┼──────────┼──────┐   ┌──────┼─────────────┼───┴───┴───┴───┴──────┘
+//                                                │   spc    │ lsft │   │ lgui │  CTL_ENTR   │
+//                                                └──────────┴──────┘   └──────┴─────────────┘
+  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , TG(_APP) ,                         TG(_NUMPAD) , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
+  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                         KC_J        , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
+  KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                         KC_H        , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
+  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                         KC_K        , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
+                                                          KC_SPACE , KC_LSFT ,     KC_LGUI , CTL_ENTR
 ),
 
 [_NUMPAD] = LAYOUT_voyager(
-//    ┌─────┬─────┬───┬───┬───┬──────┐               ┌─────┬───┬─────┬─────┬─────┬─────┐
-//    │     │     │ 7 │ 8 │ 9 │      │               │  *  │ ` │  /  │  \  │  %  │     │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ 4 │ 5 │ 6 │  +   │               │  @  │ & │  [  │  ]  │  =  │  ;  │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ 1 │ 2 │ 3 │  -   │               │  $  │ # │  (  │  )  │  ~  │  '  │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ ( │ 0 │ ) │ calc │               │  ^  │ _ │     │     │     │     │
-//    └─────┴─────┴───┴───┴───┼──────┼─────┐   ┌─────┼─────┼───┴─────┴─────┴─────┴─────┘
-//                            │      │     │   │     │     │
-//                            └──────┴─────┘   └─────┴─────┘
-  _______ , _______ , KC_7    , KC_8 , KC_9    , _______       ,                         KC_ASTR , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , _______ ,
-  _______ , KC_NO   , KC_4    , KC_5 , KC_6    , KC_PLUS       ,                         KC_AT   , KC_AMPR  , KC_LBRC  , KC_RBRC , KC_EQUAL , KC_SCLN ,
-  _______ , KC_NO   , KC_1    , KC_2 , KC_3    , KC_MINUS      ,                         KC_DLR  , KC_HASH  , KC_LPRN  , KC_RPRN , KC_TILD  , KC_QUOTE,
-  _______ , KC_NO   , KC_LPRN , KC_0 , KC_RPRN , KC_CALCULATOR ,                         KC_CIRC , KC_UNDS  , _______  , _______ , _______  , _______ ,
+//    ┌─────┬─────┬───┬───┬───┬──────┐               ┌─────────────┬───┬─────┬─────┬─────┬─────┐
+//    │     │     │ ( │ 0 │ ) │  *   │               │ TG(_NUMPAD) │ ` │  /  │  \  │  %  │     │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 7 │ 8 │ 9 │  +   │               │      @      │ & │  [  │  ]  │  =  │  ;  │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 4 │ 5 │ 6 │  -   │               │      $      │ # │  (  │  )  │  ~  │  '  │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 1 │ 2 │ 3 │ calc │               │      ^      │ _ │     │     │     │     │
+//    └─────┴─────┴───┴───┴───┼──────┼─────┐   ┌─────┼─────────────┼───┴─────┴─────┴─────┴─────┘
+//                            │      │     │   │     │             │
+//                            └──────┴─────┘   └─────┴─────────────┘
+  _______ , _______ , KC_LPRN , KC_0 , KC_RPRN , KC_ASTR       ,                         TG(_NUMPAD) , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , _______ ,
+  _______ , KC_NO   , KC_7    , KC_8 , KC_9    , KC_PLUS       ,                         KC_AT       , KC_AMPR  , KC_LBRC  , KC_RBRC , KC_EQUAL , KC_SCLN ,
+  _______ , KC_NO   , KC_4    , KC_5 , KC_6    , KC_MINUS      ,                         KC_DLR      , KC_HASH  , KC_LPRN  , KC_RPRN , KC_TILD  , KC_QUOTE,
+  _______ , KC_NO   , KC_1    , KC_2 , KC_3    , KC_CALCULATOR ,                         KC_CIRC     , KC_UNDS  , _______  , _______ , _______  , _______ ,
                                                  _______       , _______ ,     _______ , _______
 ),
 
@@ -81,22 +81,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_APP] = LAYOUT_voyager(
-//    ┌────┬────────┬──────────┬────────┬──────────┬───────────┐               ┌─────────┬─────────┬─────────┬─────────┬───────────┬────┐
-//    │ no │   no   │ PREV_TAB │   no   │ NXT_TAB  │    no     │               │   no    │ PRV_WIN │ MSN_CTL │ NXT_WIN │    no     │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤               ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │   no   │ WEBSTORM │ FINDER │ PYCHARM  │  SPOTIFY  │               │ VOL_UP  │ LFT_HLF │ FLL_SCR │ RGT_HLF │    no     │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤               ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │ LINEAR │ POSTMAN  │ SLACK  │ TERMINAL │ DATAGRIP  │               │ VOL_DN  │ LFT_23  │  CNTR   │ RGT_23  │ ALACRITTY │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤               ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │   no   │    no    │ CHROME │ SCRN_SHT │ SCRN_SHT2 │               │ KEYMAPP │ L_THRD  │ M_THRD  │ R_THRD  │    no     │ no │
-//    └────┴────────┴──────────┴────────┴──────────┼───────────┼────┐   ┌──────┼─────────┼─────────┴─────────┴─────────┴───────────┴────┘
-//                                                 │    no     │ no │   │ paus │ PLAY_PS │
-//                                                 └───────────┴────┘   └──────┴─────────┘
-  KC_NO , KC_NO  , PREV_TAB , KC_NO  , NXT_TAB  , KC_NO     ,                        KC_NO   , PRV_WIN , MSN_CTL , NXT_WIN , KC_NO     , KC_NO,
-  KC_NO , KC_NO  , WEBSTORM , FINDER , PYCHARM  , SPOTIFY   ,                        VOL_UP  , LFT_HLF , FLL_SCR , RGT_HLF , KC_NO     , KC_NO,
-  KC_NO , LINEAR , POSTMAN  , SLACK  , TERMINAL , DATAGRIP  ,                        VOL_DN  , LFT_23  , CNTR    , RGT_23  , ALACRITTY , KC_NO,
-  KC_NO , KC_NO  , KC_NO    , CHROME , SCRN_SHT , SCRN_SHT2 ,                        KEYMAPP , L_THRD  , M_THRD  , R_THRD  , KC_NO     , KC_NO,
-                                                  KC_NO     , KC_NO ,     KC_PAUSE , PLAY_PS
+//    ┌────┬────────┬──────────┬────────┬──────────┬───────────┐                    ┌─────────┬─────────┬─────────┬─────────┬───────────┬────┐
+//    │ no │   no   │ PREV_TAB │   no   │ NXT_TAB  │           │                    │   no    │ PRV_WIN │ MSN_CTL │ NXT_WIN │    no     │ no │
+//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
+//    │ no │   q    │ WEBSTORM │ FINDER │ PYCHARM  │  SPOTIFY  │                    │ VOL_UP  │ LFT_HLF │ FLL_SCR │ RGT_HLF │    no     │ no │
+//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
+//    │ no │ LINEAR │ POSTMAN  │ SLACK  │ TERMINAL │ DATAGRIP  │                    │ VOL_DN  │ LFT_23  │  CNTR   │ RGT_23  │ ALACRITTY │ no │
+//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
+//    │ no │   no   │    no    │ CHROME │ SCRN_SHT │ SCRN_SHT2 │                    │ KEYMAPP │ L_THRD  │ M_THRD  │ R_THRD  │    no     │ no │
+//    └────┴────────┴──────────┴────────┴──────────┼───────────┼─────────┐   ┌──────┼─────────┼─────────┴─────────┴─────────┴───────────┴────┘
+//                                                 │  PRV_APP  │ NXT_APP │   │ lgui │ PLAY_PS │
+//                                                 └───────────┴─────────┘   └──────┴─────────┘
+  KC_NO , KC_NO  , PREV_TAB , KC_NO  , NXT_TAB  , _______   ,                         KC_NO   , PRV_WIN , MSN_CTL , NXT_WIN , KC_NO     , KC_NO,
+  KC_NO , KC_Q   , WEBSTORM , FINDER , PYCHARM  , SPOTIFY   ,                         VOL_UP  , LFT_HLF , FLL_SCR , RGT_HLF , KC_NO     , KC_NO,
+  KC_NO , LINEAR , POSTMAN  , SLACK  , TERMINAL , DATAGRIP  ,                         VOL_DN  , LFT_23  , CNTR    , RGT_23  , ALACRITTY , KC_NO,
+  KC_NO , KC_NO  , KC_NO    , CHROME , SCRN_SHT , SCRN_SHT2 ,                         KEYMAPP , L_THRD  , M_THRD  , R_THRD  , KC_NO     , KC_NO,
+                                                  PRV_APP   , NXT_APP ,     KC_LGUI , PLAY_PS
 ),
 
 [_FUNC] = LAYOUT_voyager(
@@ -138,17 +138,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
-
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MOUSE_S:
-            return TAPPING_TERM + 75;
+            return TAPPING_TERM + 50;
         case TXT_T:
-            return TAPPING_TERM + 75;
-        case APP_E:
-            return TAPPING_TERM + 75;
+            return TAPPING_TERM + 50;
         case NC_SPACE:
-            return TAPPING_TERM + 75;
+            return TAPPING_TERM + 50;
         default:
             return TAPPING_TERM;
     }

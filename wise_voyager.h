@@ -16,6 +16,8 @@ enum custom_keycodes {
 #define NXT_TAB LCTL(KC_TAB)
 #define PRV_WIN LGUI(LSFT(KC_GRAVE))
 #define NXT_WIN LGUI(KC_GRAVE)
+#define PRV_APP LSFT(KC_TAB)
+#define NXT_APP KC_TAB
 #define MSN_CTL LALT(LCTL(KC_F3))
 #define LFT_HLF LALT(LCTL(KC_LEFT))
 #define RGT_HLF LALT(LCTL(KC_RIGHT))
@@ -56,7 +58,7 @@ enum custom_keycodes {
 #define KEYB_BSPC LT(_KEYB, KC_BSPC)
 
 enum voyager_layers {
-    _COLEMAK,
+    _COLEMAK=0,
     _NUMPAD,
     _TXT_NAV,
     _MOUSE,
@@ -122,10 +124,10 @@ void gui_app_finished(tap_dance_state_t *state, void *user_data) {
     ql_tap_state.state = cur_dance(state);
     switch(ql_tap_state.state) {
         case SINGLE_TAP:
-            /* tap_code17(KC_UNDS); */
+            register_mods(MOD_BIT(KC_LSFT));
             break;
         case SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_RIGHT_GUI));
+            register_mods(MOD_BIT(KC_LSFT));
             break;
         case DOUBLE_SINGLE_TAP:
             tap_code16(KC_LPRN);
@@ -137,18 +139,17 @@ void gui_app_finished(tap_dance_state_t *state, void *user_data) {
 }
 
 void gui_app_reset(tap_dance_state_t *state, void *user_data) {
-    if (ql_tap_state.state == DOUBLE_HOLD) {
-        layer_off(_APP);
-    }
     switch(ql_tap_state.state) {
         case SINGLE_TAP:
+            unregister_mods(MOD_BIT(KC_LSFT));
             break;
         case SINGLE_HOLD:
-            unregister_mods(MOD_BIT(KC_RIGHT_GUI));
+            unregister_mods(MOD_BIT(KC_LSFT));
             break;
         case DOUBLE_SINGLE_TAP:
             break;
         case DOUBLE_HOLD:
+            layer_off(_APP);
             break;
     }
     ql_tap_state.state = 0;
