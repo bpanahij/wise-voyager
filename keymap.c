@@ -3,42 +3,44 @@
 #include "wise_voyager.h"
 #include "led_map.c"
 
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬───┬───────────┬───────────┬──────────┐                 ┌─────────────┬───┬───┬───┬───┬──────┐
-//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │ TG(_APP) │                 │ TG(_NUMPAD) │ ` │ / │ \ │ % │ bspc │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
-//    │    no    │ q  │ w │     f     │     p     │    g     │                 │      j      │ l │ u │ y │ = │  :   │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
-//    │   lctl   │ a  │ r │  MOUSE_S  │   TXT_T   │    d     │                 │      h      │ n │ e │ i │ o │  '   │
-//    ├──────────┼────┼───┼───────────┼───────────┼──────────┤                 ├─────────────┼───┼───┼───┼───┼──────┤
-//    │ left_ALT │ z  │ x │     c     │     v     │    b     │                 │      k      │ m │ , │ . │ / │  !   │
-//    └──────────┴────┴───┴───────────┴───────────┼──────────┼──────┐   ┌──────┼─────────────┼───┴───┴───┴───┴──────┘
-//                                                │   spc    │ lsft │   │ lgui │  CTL_ENTR   │
-//                                                └──────────┴──────┘   └──────┴─────────────┘
-  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , TG(_APP) ,                         TG(_NUMPAD) , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
-  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                         KC_J        , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
-  KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                         KC_H        , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
-  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                         KC_K        , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
+//    ┌──────────┬────┬───┬───────────┬───────────┬─────┐                 ┌──────────┬───┬───┬───┬───┬──────┐
+//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │ no  │                 │    no    │ ` │ / │ \ │ % │ bspc │
+//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │    no    │ q  │ w │     f     │     p     │  g  │                 │    j     │ l │ u │ y │ = │  :   │
+//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │   lctl   │ a  │ r │  MOUSE_S  │   TXT_T   │  d  │                 │    h     │ n │ e │ i │ o │  '   │
+//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │ left_ALT │ z  │ x │     c     │     v     │  b  │                 │    k     │ m │ , │ . │ / │  !   │
+//    └──────────┴────┴───┴───────────┴───────────┼─────┼──────┐   ┌──────┼──────────┼───┴───┴───┴───┴──────┘
+//                                                │ spc │ lsft │   │ lgui │ CTL_ENTR │
+//                                                └─────┴──────┘   └──────┴──────────┘
+  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , KC_NO    ,                         KC_NO    , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
+  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                         KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
+  KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                         KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
+  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                         KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
                                                           KC_SPACE , KC_LSFT ,     KC_LGUI , CTL_ENTR
 ),
 
 [_NUMPAD] = LAYOUT_voyager(
-//    ┌─────┬─────┬───┬───┬───┬──────┐               ┌─────────────┬───┬─────┬─────┬─────┬─────┐
-//    │     │     │ ( │ 0 │ ) │  *   │               │ TG(_NUMPAD) │ ` │  /  │  \  │  %  │     │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ 7 │ 8 │ 9 │  +   │               │      @      │ & │  [  │  ]  │  =  │  ;  │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ 4 │ 5 │ 6 │  -   │               │      $      │ # │  (  │  )  │  ~  │  '  │
-//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────────────┼───┼─────┼─────┼─────┼─────┤
-//    │     │ no  │ 1 │ 2 │ 3 │ calc │               │      ^      │ _ │     │     │     │     │
-//    └─────┴─────┴───┴───┴───┼──────┼─────┐   ┌─────┼─────────────┼───┴─────┴─────┴─────┴─────┘
-//                            │      │     │   │     │             │
-//                            └──────┴─────┘   └─────┴─────────────┘
-  _______ , _______ , KC_LPRN , KC_0 , KC_RPRN , KC_ASTR       ,                         TG(_NUMPAD) , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , _______ ,
-  _______ , KC_NO   , KC_7    , KC_8 , KC_9    , KC_PLUS       ,                         KC_AT       , KC_AMPR  , KC_LBRC  , KC_RBRC , KC_EQUAL , KC_SCLN ,
-  _______ , KC_NO   , KC_4    , KC_5 , KC_6    , KC_MINUS      ,                         KC_DLR      , KC_HASH  , KC_LPRN  , KC_RPRN , KC_TILD  , KC_QUOTE,
-  _______ , KC_NO   , KC_1    , KC_2 , KC_3    , KC_CALCULATOR ,                         KC_CIRC     , KC_UNDS  , _______  , _______ , _______  , _______ ,
+//    ┌─────┬─────┬───┬───┬───┬──────┐               ┌─────┬───┬─────┬─────┬─────┬─────┐
+//    │     │     │ ( │ 0 │ ) │  *   │               │ no  │ ` │  /  │  \  │  %  │     │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 7 │ 8 │ 9 │  +   │               │  @  │ & │  [  │  ]  │  =  │  ;  │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 4 │ 5 │ 6 │  -   │               │  $  │ # │  (  │  )  │  ~  │  '  │
+//    ├─────┼─────┼───┼───┼───┼──────┤               ├─────┼───┼─────┼─────┼─────┼─────┤
+//    │     │ no  │ 1 │ 2 │ 3 │ calc │               │  ^  │ _ │     │     │     │     │
+//    └─────┴─────┴───┴───┴───┼──────┼─────┐   ┌─────┼─────┼───┴─────┴─────┴─────┴─────┘
+//                            │      │     │   │     │     │
+//                            └──────┴─────┘   └─────┴─────┘
+  _______ , _______ , KC_LPRN , KC_0 , KC_RPRN , KC_ASTR       ,                         KC_NO   , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , _______ ,
+  _______ , KC_NO   , KC_7    , KC_8 , KC_9    , KC_PLUS       ,                         KC_AT   , KC_AMPR  , KC_LBRC  , KC_RBRC , KC_EQUAL , KC_SCLN ,
+  _______ , KC_NO   , KC_4    , KC_5 , KC_6    , KC_MINUS      ,                         KC_DLR  , KC_HASH  , KC_LPRN  , KC_RPRN , KC_TILD  , KC_QUOTE,
+  _______ , KC_NO   , KC_1    , KC_2 , KC_3    , KC_CALCULATOR ,                         KC_CIRC , KC_UNDS  , _______  , _______ , _______  , _______ ,
                                                  _______       , _______ ,     _______ , _______
 ),
 
@@ -159,23 +161,26 @@ void keyboard_post_init_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-
         case ESC_COLON:
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_ESC) ":");
             }
             break;
-        case RGB_SLD:
-            if (rawhid_state.rgb_control) {
-                return false;
-            }
-            if (record->event.pressed) {
-                rgblight_mode(1);
-            }
-            return false;
     }
     return true;
 }
 
 
+const uint16_t PROGMEM punctuation_combo[] = {MOUSE_S, TXT_T, COMBO_END};
+const uint16_t PROGMEM leave_punctionation_combo[] = {KC_5, KC_6, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_E, KC_N, COMBO_END};
+const uint16_t PROGMEM app_combo[] = {KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM leave_app_combo[] = {CNTR, RGT_23, COMBO_END};
 
+combo_t key_combos[] = {
+    COMBO(punctuation_combo, TG(_NUMPAD)),
+    COMBO(leave_punctionation_combo, TG(_NUMPAD)),
+    COMBO(esc_combo, KC_ESC),
+    COMBO(app_combo, TG(_APP)),
+    COMBO(leave_app_combo, TG(_APP)),
+};
