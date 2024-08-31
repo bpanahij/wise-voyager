@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#
 #include "version.h"
 #include "wise_voyager.h"
 #include "led_map.c"
@@ -7,22 +7,22 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬───┬───────────┬───────────┬─────┐                 ┌──────────┬───┬───┬───┬───┬──────┐
-//    │   esc    │ no │ _ │ FNC_MINUS │ ESC_COLON │ no  │                 │    no    │ ` │ / │ \ │ % │ bspc │
-//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │    no    │ q  │ w │     f     │     p     │  g  │                 │    j     │ l │ u │ y │ = │  :   │
-//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │   lctl   │ a  │ r │  MOUSE_S  │   TXT_T   │  d  │                 │    h     │ n │ e │ i │ o │  '   │
-//    ├──────────┼────┼───┼───────────┼───────────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │ left_ALT │ z  │ x │     c     │     v     │  b  │                 │    k     │ m │ , │ . │ / │  !   │
-//    └──────────┴────┴───┴───────────┴───────────┼─────┼──────┐   ┌──────┼──────────┼───┴───┴───┴───┴──────┘
-//                                                │ spc │ lsft │   │ lgui │ CTL_ENTR │
-//                                                └─────┴──────┘   └──────┴──────────┘
-  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , ESC_COLON , KC_NO    ,                         KC_NO    , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
-  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P      , KC_G     ,                         KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
-  KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T     , KC_D     ,                         KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
-  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V      , KC_B     ,                         KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
-                                                          KC_SPACE , KC_LSFT ,     KC_LGUI , CTL_ENTR
+//    ┌──────────┬────┬───┬───────────┬───────┬─────┐                 ┌──────────┬───┬───┬───┬───┬──────┐
+//    │   esc    │ no │ _ │ FNC_MINUS │  no   │ no  │                 │    no    │ ` │ / │ \ │ % │ bspc │
+//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │    no    │ q  │ w │     f     │   p   │  g  │                 │    j     │ l │ u │ y │ = │  :   │
+//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │   lctl   │ a  │ r │  MOUSE_S  │ TXT_T │  d  │                 │    h     │ n │ e │ i │ o │  '   │
+//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │ left_ALT │ z  │ x │     c     │   v   │  b  │                 │    k     │ m │ , │ . │ / │  !   │
+//    └──────────┴────┴───┴───────────┴───────┼─────┼──────┐   ┌──────┼──────────┼───┴───┴───┴───┴──────┘
+//                                            │ spc │ lsft │   │ lgui │ CTL_ENTR │
+//                                            └─────┴──────┘   └──────┴──────────┘
+  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , KC_NO , KC_NO    ,                         KC_NO    , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
+  KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P  , KC_G     ,                         KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
+  KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T , KC_D     ,                         KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
+  KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V  , KC_B     ,                         KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
+                                                      KC_SPACE , KC_LSFT ,     KC_LGUI , CTL_ENTR
 ),
 
 [_NUMPAD] = LAYOUT_voyager(
@@ -153,8 +153,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-extern rgb_config_t rgb_matrix_config;
-
+//extern rgb_config_t rgb_matrix_config;
 void keyboard_post_init_user(void) {
     rgb_matrix_enable();
 }
@@ -165,6 +164,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_ESC) ":");
             }
+            return false;
             break;
     }
     return true;
@@ -172,15 +172,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 const uint16_t PROGMEM punctuation_combo[] = {MOUSE_S, TXT_T, COMBO_END};
-const uint16_t PROGMEM leave_punctionation_combo[] = {KC_5, KC_6, COMBO_END};
-const uint16_t PROGMEM esc_combo[] = {KC_E, KC_N, COMBO_END};
 const uint16_t PROGMEM app_combo[] = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM leave_app_combo[] = {CNTR, RGT_23, COMBO_END};
+const uint16_t PROGMEM num_layer[] = {KC_E, KC_N, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(punctuation_combo, TG(_NUMPAD)),
-    COMBO(leave_punctionation_combo, TG(_NUMPAD)),
-    COMBO(esc_combo, KC_ESC),
+    COMBO(punctuation_combo, MO(_NUMPAD)),
     COMBO(app_combo, TG(_APP)),
     COMBO(leave_app_combo, TG(_APP)),
+    COMBO(num_layer, MO(_NUMPAD)),
 };

@@ -139,7 +139,7 @@ bool rgb_matrix_indicators_user(void) {
             set_layer_color(_KEYB);
             break;
         default:
-            rgb_matrix_set_color_all(0, 0, 0);
+        //rgb_matrix_set_color_all(0, 0, 0);
             break;
     }
     return true;
