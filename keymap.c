@@ -1,9 +1,120 @@
-#
+#include QMK_KEYBOARD_H
+
 #include "version.h"
+
 #include "wise_voyager.h"
-#include "led_map.c"
 
 
+enum custom_keycodes {
+    RGB_SLD = ML_SAFE_RANGE,
+    ESC_COLON = SAFE_RANGE,
+};
+
+
+
+enum voyager_layers {
+    _COLEMAK=0,
+    _NUMPAD,
+    _TXT_NAV,
+    _MOUSE,
+    _APP,
+    _FUNC,
+    _KEYB,
+};
+
+
+enum {
+    GUI_APP,
+    ESC_I,
+};
+
+typedef struct {
+    bool is_press_action;
+    int state;
+} tap;
+
+enum {
+    SINGLE_TAP = 1,
+    SINGLE_HOLD = 2,
+    DOUBLE_SINGLE_TAP = 3,
+    DOUBLE_HOLD = 4,
+};
+
+static tap ql_tap_state = {
+    .is_press_action = true,
+    .state = 0
+};
+
+int cur_dance (tap_dance_state_t *state);
+void gui_app_finished(tap_dance_state_t *state, void *user_data);
+void gui_app_reset(tap_dance_state_t *state, void *user_data);
+
+int cur_dance(tap_dance_state_t *state) {
+    if(state->count == 1) {
+        if (state->interrupted || !state->pressed) {
+            return SINGLE_TAP ;
+        }
+        else {
+            return SINGLE_HOLD;
+        }
+    }
+    if(state->count == 2) {
+        if (state->interrupted || !state->pressed) {
+            return DOUBLE_SINGLE_TAP ;
+        }
+        else {
+            return DOUBLE_HOLD;
+        }
+    }
+    else {
+        return 3;
+    }
+}
+
+// ================================================
+// ================================================
+// GUI_APP key
+
+void gui_app_finished(tap_dance_state_t *state, void *user_data) {
+    ql_tap_state.state = cur_dance(state);
+    switch(ql_tap_state.state) {
+        case SINGLE_TAP:
+            register_mods(MOD_BIT(KC_LSFT));
+            break;
+        case SINGLE_HOLD:
+            register_mods(MOD_BIT(KC_LSFT));
+            break;
+        case DOUBLE_SINGLE_TAP:
+            tap_code16(KC_LPRN);
+            break;
+        case DOUBLE_HOLD:
+            layer_on(_APP);
+            break;
+    }
+}
+
+void gui_app_reset(tap_dance_state_t *state, void *user_data) {
+    switch(ql_tap_state.state) {
+        case SINGLE_TAP:
+            unregister_mods(MOD_BIT(KC_LSFT));
+            break;
+        case SINGLE_HOLD:
+            unregister_mods(MOD_BIT(KC_LSFT));
+            break;
+        case DOUBLE_SINGLE_TAP:
+            break;
+        case DOUBLE_HOLD:
+            layer_off(_APP);
+            break;
+    }
+    ql_tap_state.state = 0;
+}
+// ================================================
+//
+
+tap_dance_action_t tap_dance_actions[] = {
+    [GUI_APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gui_app_finished, gui_app_reset)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
@@ -182,3 +293,6 @@ combo_t key_combos[] = {
     COMBO(leave_app_combo, TG(_APP)),
     COMBO(num_layer, MO(_NUMPAD)),
 };
+
+
+#include "led_map.c"
