@@ -156,21 +156,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_TXT_NAV] = LAYOUT_voyager(
-//    ┌────┬────┬────┬────┬────┬────┐             ┌─────────┬───────────┬──────┬──────┬────┬────┐
-//    │ no │ no │ no │ no │ no │ no │             │   no    │    no     │  no  │  no  │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼──────┼──────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │ pAGE_UP │ LSFT(tab) │  up  │ tab  │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼──────┼──────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │  pgdn   │   left    │ down │ rght │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼──────┼──────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │   no    │    no     │ down │  no  │ no │ no │
-//    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼─────────┼───────────┴──────┴──────┴────┴────┘
+//    ┌────┬────┬────┬────┬────┬────┐             ┌─────────┬───────────┬────────────────┬─────────────┬────┬────┐
+//    │ no │ no │ no │ no │ no │ no │             │   no    │ www_back  │ www_favourites │ www_forward │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼────────────────┼─────────────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │ pAGE_UP │ LSFT(tab) │       up       │     tab     │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼────────────────┼─────────────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │  pgdn   │   left    │      down      │    rght     │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├─────────┼───────────┼────────────────┼─────────────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │   no    │    no     │      down      │     no      │ no │ no │
+//    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼─────────┼───────────┴────────────────┴─────────────┴────┴────┘
 //                             │ no │ no │   │ no │   no    │
 //                             └────┴────┘   └────┴─────────┘
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO      , KC_NO        , KC_NO   , KC_NO    , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PAGE_UP , LSFT(KC_TAB) , KC_UP   , KC_TAB   , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PGDN    , KC_LEFT      , KC_DOWN , KC_RIGHT , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO      , KC_NO        , KC_DOWN , KC_NO    , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO      , KC_WWW_BACK  , KC_WWW_FAVORITES , KC_WWW_FORWARD , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PAGE_UP , LSFT(KC_TAB) , KC_UP            , KC_TAB         , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_PGDN    , KC_LEFT      , KC_DOWN          , KC_RIGHT       , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO      , KC_NO        , KC_DOWN          , KC_NO          , KC_NO , KC_NO,
                                           KC_NO , KC_NO ,     KC_NO , KC_NO
 ),
 
@@ -232,21 +232,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_KEYB] = LAYOUT_voyager(
-//    ┌────┬────┬────┬────┬────┬────┐             ┌────┬────┬────┬────┬────┬────┐
-//    │ no │ no │ no │ no │ no │ no │             │ no │ no │ no │ no │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├────┼────┼────┼────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │ no │ no │ no │ no │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├────┼────┼────┼────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │ no │ no │ no │ no │ no │ no │
-//    ├────┼────┼────┼────┼────┼────┤             ├────┼────┼────┼────┼────┼────┤
-//    │ no │ no │ no │ no │ no │ no │             │ no │ no │ no │ no │ no │ no │
-//    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼────┼────┴────┴────┴────┴────┘
-//                             │ no │ no │   │ no │ no │
-//                             └────┴────┘   └────┴────┘
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
+//    ┌────┬────┬────┬────┬────┬────┐             ┌──────┬────┬────┬────┬────┬────┐
+//    │ no │ no │ no │ no │ no │ no │             │  no  │ no │ no │ no │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├──────┼────┼────┼────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │ bRIU │ no │ no │ no │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├──────┼────┼────┼────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │ bRID │ no │ no │ no │ no │ no │
+//    ├────┼────┼────┼────┼────┼────┤             ├──────┼────┼────┼────┼────┼────┤
+//    │ no │ no │ no │ no │ no │ no │             │  no  │ no │ no │ no │ no │ no │
+//    └────┴────┴────┴────┴────┼────┼────┐   ┌────┼──────┼────┴────┴────┴────┴────┘
+//                             │ no │ no │   │ no │  no  │
+//                             └────┴────┘   └────┴──────┘
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_BRIU , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_BRID , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO ,                     KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO,
                                           KC_NO , KC_NO ,     KC_NO , KC_NO
 )
 };
@@ -286,12 +286,16 @@ const uint16_t PROGMEM punctuation_combo[] = {MOUSE_S, TXT_T, COMBO_END};
 const uint16_t PROGMEM app_combo[] = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM leave_app_combo[] = {CNTR, RGT_23, COMBO_END};
 const uint16_t PROGMEM num_layer[] = {KC_E, KC_N, COMBO_END};
+const uint16_t PROGMEM func_layer[] = {KC_U, KC_L, COMBO_END};
+const uint16_t PROGMEM keyb_layer[] = {KC_F, KC_P, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(punctuation_combo, MO(_NUMPAD)),
     COMBO(app_combo, TG(_APP)),
     COMBO(leave_app_combo, TG(_APP)),
     COMBO(num_layer, MO(_NUMPAD)),
+    COMBO(func_layer, MO(_FUNC)),
+    COMBO(keyb_layer, MO(_KEYB)),
 };
 
 
