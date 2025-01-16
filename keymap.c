@@ -194,22 +194,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_APP] = LAYOUT_voyager(
-//    ┌────┬────────┬──────────┬────────┬──────────┬───────────┐                    ┌─────────┬─────────┬─────────┬─────────┬───────────┬────┐
-//    │ no │   no   │ PREV_TAB │   no   │ NXT_TAB  │           │                    │   no    │ PRV_WIN │ MSN_CTL │ NXT_WIN │    no     │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │   q    │ WEBSTORM │ FINDER │ PYCHARM  │  SPOTIFY  │                    │ VOL_UP  │ LFT_HLF │ FLL_SCR │ RGT_HLF │    no     │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │ LINEAR │ POSTMAN  │ SLACK  │ TERMINAL │ DATAGRIP  │                    │ VOL_DN  │ LFT_23  │  CNTR   │ RGT_23  │ ALACRITTY │ no │
-//    ├────┼────────┼──────────┼────────┼──────────┼───────────┤                    ├─────────┼─────────┼─────────┼─────────┼───────────┼────┤
-//    │ no │   no   │    no    │ CHROME │ SCRN_SHT │ SCRN_SHT2 │                    │ KEYMAPP │ L_THRD  │ M_THRD  │ R_THRD  │    no     │ no │
-//    └────┴────────┴──────────┴────────┴──────────┼───────────┼─────────┐   ┌──────┼─────────┼─────────┴─────────┴─────────┴───────────┴────┘
-//                                                 │  PRV_APP  │ NXT_APP │   │ lgui │ PLAY_PS │
-//                                                 └───────────┴─────────┘   └──────┴─────────┘
-  KC_NO , KC_NO  , PREV_TAB , KC_NO  , NXT_TAB  , _______   ,                         KC_NO   , PRV_WIN , MSN_CTL , NXT_WIN , KC_NO     , KC_NO,
-  KC_NO , KC_Q   , WEBSTORM , FINDER , PYCHARM  , SPOTIFY   ,                         VOL_UP  , LFT_HLF , FLL_SCR , RGT_HLF , KC_NO     , KC_NO,
-  KC_NO , LINEAR , POSTMAN  , SLACK  , TERMINAL , DATAGRIP  ,                         VOL_DN  , LFT_23  , CNTR    , RGT_23  , ALACRITTY , KC_NO,
-  KC_NO , KC_NO  , KC_NO    , CHROME , SCRN_SHT , SCRN_SHT2 ,                         KEYMAPP , L_THRD  , M_THRD  , R_THRD  , KC_NO     , KC_NO,
-                                                  PRV_APP   , NXT_APP ,     KC_LGUI , PLAY_PS
+//    ┌────┬────┬─────────┬─────────┬─────────┬────┐                 ┌─────────┬──────────┬─────────┬─────────┬────┬────┐
+//    │ no │ no │   no    │ LALT(0) │   no    │ no │                 │   no    │ PREV_TAB │ LALT(q) │ NXT_TAB │ no │ no │
+//    ├────┼────┼─────────┼─────────┼─────────┼────┤                 ├─────────┼──────────┼─────────┼─────────┼────┼────┤
+//    │ no │ no │ LALT(7) │ LALT(8) │ LALT(9) │ no │                 │ VOL_UP  │    no    │  C(w)   │   no    │ no │ no │
+//    ├────┼────┼─────────┼─────────┼─────────┼────┤                 ├─────────┼──────────┼─────────┼─────────┼────┼────┤
+//    │ no │ no │ LALT(4) │ LALT(5) │ LALT(6) │ no │                 │ VOL_DN  │    no    │    e    │    i    │ no │ no │
+//    ├────┼────┼─────────┼─────────┼─────────┼────┤                 ├─────────┼──────────┼─────────┼─────────┼────┼────┤
+//    │ no │ no │ LALT(1) │ LALT(2) │ LALT(3) │ no │                 │   no    │    no    │   no    │   no    │ no │ no │
+//    └────┴────┴─────────┴─────────┴─────────┼────┼──────┐   ┌──────┼─────────┼──────────┴─────────┴─────────┴────┴────┘
+//                                            │ no │ lsft │   │ lgui │ PLAY_PS │
+//                                            └────┴──────┘   └──────┴─────────┘
+  KC_NO , KC_NO , KC_NO      , LALT(KC_0) , KC_NO      , KC_NO ,                         KC_NO   , PREV_TAB , LALT(KC_Q) , NXT_TAB , KC_NO , KC_NO,
+  KC_NO , KC_NO , LALT(KC_7) , LALT(KC_8) , LALT(KC_9) , KC_NO ,                         VOL_UP  , KC_NO    , C(KC_W)    , KC_NO   , KC_NO , KC_NO,
+  KC_NO , KC_NO , LALT(KC_4) , LALT(KC_5) , LALT(KC_6) , KC_NO ,                         VOL_DN  , KC_NO    , KC_E       , KC_I    , KC_NO , KC_NO,
+  KC_NO , KC_NO , LALT(KC_1) , LALT(KC_2) , LALT(KC_3) , KC_NO ,                         KC_NO   , KC_NO    , KC_NO      , KC_NO   , KC_NO , KC_NO,
+                                                         KC_NO , KC_LSFT ,     KC_LGUI , PLAY_PS
 ),
 
 [_FUNC] = LAYOUT_voyager(
@@ -284,7 +284,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM punctuation_combo[] = {MOUSE_S, TXT_T, COMBO_END};
 const uint16_t PROGMEM app_combo[] = {KC_E, KC_I, COMBO_END};
-const uint16_t PROGMEM leave_app_combo[] = {CNTR, RGT_23, COMBO_END};
+const uint16_t PROGMEM leave_app_combo[] = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM num_layer[] = {KC_E, KC_N, COMBO_END};
 const uint16_t PROGMEM func_layer[] = {KC_U, KC_L, COMBO_END};
 const uint16_t PROGMEM keyb_layer[] = {KC_F, KC_P, COMBO_END};
