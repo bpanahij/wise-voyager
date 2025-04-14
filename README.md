@@ -82,7 +82,34 @@ This keymap uses nice ASCII keyboard layout comments that provide a visual repre
    Plug 'codethread/qmk.nvim'
    ```
 
-3. Configure qmk.nvim in your Neovim config using auto-detection for Voyager keymap files:
+3. There are two ways to configure qmk.nvim for your Voyager keyboard:
+
+   **Option A: Manual Configuration**
+
+   ```lua
+   -- In your Neovim config (e.g., ~/.config/nvim/lua/plugins/qmk.lua)
+   return {
+     "codethread/qmk.nvim",
+     config = function()
+       local conf = {
+         name = "LAYOUT_voyager",
+         layout = {
+           "x x x x x x _ _ _ x x x x x x",
+           "x x x x x x _ _ _ x x x x x x",
+           "x x x x x x _ _ _ x x x x x x",
+           "x x x x x x _ _ _ x x x x x x",
+           "_ _ _ _ _ x x _ x x _ _ _ _ _",
+         },
+         comment_preview = {
+           position = "inside",
+         },
+       }
+       require("qmk").setup(conf)
+     end
+   }
+   ```
+
+   **Option B: Auto-detection for Voyager keymap files**
 
    ```lua
    -- In your Neovim config (e.g., ~/.config/nvim/lua/plugins/qmk.lua)
