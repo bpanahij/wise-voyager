@@ -32,12 +32,17 @@ This is a custom keymap for the ZSA Voyager keyboard, optimized for ergonomics a
    ./util/qmk_install.sh
    ```
 
-3. Create the keymap directory (if it doesn't exist):
+3. Install the ZSA version of qmk
+   ```bash
+   qmk setup zsa/qmk_firmware -b firmware23
+   ```
+
+4. Create the keymap directory (if it doesn't exist):
    ```bash
    mkdir -p keyboards/voyager/keymaps/wise-voyager
    ```
 
-4. Copy the files from this repository to the keymap directory:
+5. Copy the files from this repository to the keymap directory:
    ```bash
    # If you have this repository cloned separately
    cp -r /path/to/wise-voyager/* keyboards/voyager/keymaps/wise-voyager/
