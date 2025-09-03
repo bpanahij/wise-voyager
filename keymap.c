@@ -368,8 +368,6 @@ combo_t key_combos[] = {
     COMBO(keyb_layer, MO(_KEYB)),
 };
 
-
-
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);
 }
@@ -383,6 +381,88 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
   return is_mouse_record_user(keycode, record);
 }
 
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+
+    case DUAL_FUNC_0:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_EQUAL);
+        } else {
+          unregister_code16(KC_EQUAL);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(KC_ESCAPE);
+        } else {
+          unregister_code16(KC_ESCAPE);
+        }
+      }
+      return false;
+    case DRAG_SCROLL:
+      if (record->event.pressed) {
+        set_scrolling = true;
+      } else {
+        set_scrolling = false;
+      }
+      return false;
+    case TOGGLE_SCROLL:
+      if (record->event.pressed) {
+        set_scrolling = !set_scrolling;
+      }
+      return false;
+    break;
+  case NAVIGATOR_TURBO:
+    if (record->event.pressed) {
+      navigator_turbo = true;
+    } else {
+      navigator_turbo = false;
+    }
+    return false;
+  case NAVIGATOR_AIM:
+    if (record->event.pressed) {
+      navigator_aim = true;
+    } else {
+      navigator_aim = false;
+    }
+    return false;
+  case NAVIGATOR_INC_CPI:
+    if (record->event.pressed) {
+        pointing_device_set_cpi(1);
+    }
+    return false;
+  case NAVIGATOR_DEC_CPI:
+    if (record->event.pressed) {
+        pointing_device_set_cpi(0);
+    }
+    return false;
+    case RGB_SLD:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+      }
+      return false;
+    case HSV_0_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(0,255,255);
+      }
+      return false;
+    case HSV_74_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(74,255,255);
+      }
+      return false;
+    case HSV_169_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(169,255,255);
+      }
+      return false;
+  }
+  return true;
+}
 
 
 #include "led_map.c"
