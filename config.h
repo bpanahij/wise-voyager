@@ -2,7 +2,13 @@
   Set any config.h overrides for your specific keymap here.
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
+#define MOUSE_EXTENDED_REPORT
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define AUTO_MOUSE_DEFAULT_LAYER 3
+#define NAVIGATOR_SCROLL_DIVIDER 24
+
 #define USB_SUSPEND_WAKEUP_DELAY 0
+#define SERIAL_NUMBER "X3JRB/EeRwXQ"
 #undef MOUSEKEY_INTERVAL
 #define MOUSEKEY_INTERVAL 13
 
@@ -21,7 +27,6 @@
 #undef MOUSEKEY_WHEEL_TIME_TO_MAX
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 30
 
-#define FIRMWARE_VERSION u8"6Rxol/QZylm"
 #define RAW_USAGE_PAGE 0xFF60
 #define RAW_USAGE_ID 0x61
 #define LAYER_STATE_8BIT

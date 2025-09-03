@@ -1,15 +1,31 @@
 #include QMK_KEYBOARD_H
-
 #include "version.h"
+#define MOON_LED_LEVEL LED_LEVEL
+#ifndef ZSA_SAFE_RANGE
+#define ZSA_SAFE_RANGE SAFE_RANGE
+#endif
 
 #include "wise_voyager.h"
 
+extern bool set_scrolling;
+extern bool navigator_turbo;
+extern bool navigator_aim;
 
 enum custom_keycodes {
     ESC_COLON = SAFE_RANGE,
+    HSV_0_255_255,
+    HSV_74_255_255,
+    HSV_169_255_255,
+    DRAG_SCROLL,
+    TOGGLE_SCROLL,
+    NAVIGATOR_INC_CPI,
+    NAVIGATOR_DEC_CPI,
+    NAVIGATOR_TURBO,
+    NAVIGATOR_AIM
 };
 
 
+#define DUAL_FUNC_0 LT(12, KC_F14)
 
 enum voyager_layers {
     _COLEMAK=0,
@@ -276,6 +292,61 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+        case DRAG_SCROLL:
+          if (record->event.pressed) {
+            set_scrolling = true;
+          } else {
+            set_scrolling = false;
+          }
+          return false;
+        case TOGGLE_SCROLL:
+          if (record->event.pressed) {
+            set_scrolling = !set_scrolling;
+          }
+          return false;
+        break;
+        case NAVIGATOR_TURBO:
+          if (record->event.pressed) {
+            navigator_turbo = true;
+          } else {
+            navigator_turbo = false;
+          }
+          return false;
+        case NAVIGATOR_AIM:
+          if (record->event.pressed) {
+            navigator_aim = true;
+          } else {
+            navigator_aim = false;
+          }
+          return false;
+        case NAVIGATOR_INC_CPI:
+          if (record->event.pressed) {
+              pointing_device_set_cpi(1);
+          }
+          return false;
+        case NAVIGATOR_DEC_CPI:
+          if (record->event.pressed) {
+              pointing_device_set_cpi(0);
+          }
+          return false;
+        case HSV_0_255_255:
+          if (record->event.pressed) {
+            rgblight_mode(1);
+            rgblight_sethsv(0,255,255);
+          }
+          return false;
+        case HSV_74_255_255:
+          if (record->event.pressed) {
+            rgblight_mode(1);
+            rgblight_sethsv(74,255,255);
+          }
+          return false;
+        case HSV_169_255_255:
+          if (record->event.pressed) {
+            rgblight_mode(1);
+            rgblight_sethsv(169,255,255);
+          }
+          return false;
     }
     return true;
 }
@@ -296,6 +367,22 @@ combo_t key_combos[] = {
     COMBO(func_layer, MO(_FUNC)),
     COMBO(keyb_layer, MO(_KEYB)),
 };
+
+
+
+void pointing_device_init_user(void) {
+    set_auto_mouse_enable(true);
+}
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case NAVIGATOR_INC_CPI ... NAVIGATOR_AIM:
+    case DRAG_SCROLL:
+    case TOGGLE_SCROLL:
+      return true;
+  }
+  return is_mouse_record_user(keycode, record);
+}
+
 
 
 #include "led_map.c"
