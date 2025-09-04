@@ -133,18 +133,18 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_voyager(
-//    ┌──────────┬────┬───┬───────────┬───────┬─────┐                 ┌──────────┬───┬───┬───┬───┬──────┐
-//    │   esc    │ no │ _ │ FNC_MINUS │  no   │ no  │                 │    no    │ ` │ / │ \ │ % │ bspc │
-//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │    no    │ q  │ w │     f     │   p   │  g  │                 │    j     │ l │ u │ y │ = │  :   │
-//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │   lctl   │ a  │ r │  MOUSE_S  │ TXT_T │  d  │                 │    h     │ n │ e │ i │ o │  '   │
-//    ├──────────┼────┼───┼───────────┼───────┼─────┤                 ├──────────┼───┼───┼───┼───┼──────┤
-//    │ left_ALT │ z  │ x │     c     │   v   │  b  │                 │    k     │ m │ , │ . │ / │  !   │
-//    └──────────┴────┴───┴───────────┴───────┼─────┼──────┐   ┌──────┼──────────┼───┴───┴───┴───┴──────┘
-//                                            │ spc │ lsft │   │ lgui │ CTL_ENTR │
-//                                            └─────┴──────┘   └──────┴──────────┘
-  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , KC_NO , KC_NO    ,                         KC_NO    , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
+//    ┌──────────┬────┬───┬───────────┬───────┬──────┐                 ┌──────────┬───┬───┬───┬───┬──────┐
+//    │   esc    │ no │ _ │ FNC_MINUS │  no   │ pscr │                 │    no    │ ` │ / │ \ │ % │ bspc │
+//    ├──────────┼────┼───┼───────────┼───────┼──────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │    no    │ q  │ w │     f     │   p   │  g   │                 │    j     │ l │ u │ y │ = │  :   │
+//    ├──────────┼────┼───┼───────────┼───────┼──────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │   lctl   │ a  │ r │  MOUSE_S  │ TXT_T │  d   │                 │    h     │ n │ e │ i │ o │  '   │
+//    ├──────────┼────┼───┼───────────┼───────┼──────┤                 ├──────────┼───┼───┼───┼───┼──────┤
+//    │ left_ALT │ z  │ x │     c     │   v   │  b   │                 │    k     │ m │ , │ . │ / │  !   │
+//    └──────────┴────┴───┴───────────┴───────┼──────┼──────┐   ┌──────┼──────────┼───┴───┴───┴───┴──────┘
+//                                            │ spc  │ lsft │   │ lgui │ CTL_ENTR │
+//                                            └──────┴──────┘   └──────┴──────────┘
+  KC_ESCAPE   , KC_NO , KC_UNDS , FNC_MINUS , KC_NO , KC_PSCR  ,                         KC_NO    , KC_GRAVE , KC_SLASH , KC_BSLS , KC_PERC  , KC_BSPC ,
   KC_NO       , KC_Q  , KC_W    , KC_F      , KC_P  , KC_G     ,                         KC_J     , KC_L     , KC_U     , KC_Y    , KC_EQUAL , KC_COLN ,
   KC_LCTL     , KC_A  , KC_R    , MOUSE_S   , TXT_T , KC_D     ,                         KC_H     , KC_N     , KC_E     , KC_I    , KC_O     , KC_QUOTE,
   KC_LEFT_ALT , KC_Z  , KC_X    , KC_C      , KC_V  , KC_B     ,                         KC_K     , KC_M     , KC_COMMA , KC_DOT  , KC_SLASH , KC_EXLM ,
@@ -381,88 +381,6 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
   return is_mouse_record_user(keycode, record);
 }
 
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-
-    case DUAL_FUNC_0:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_EQUAL);
-        } else {
-          unregister_code16(KC_EQUAL);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_ESCAPE);
-        } else {
-          unregister_code16(KC_ESCAPE);
-        }
-      }
-      return false;
-    case DRAG_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = true;
-      } else {
-        set_scrolling = false;
-      }
-      return false;
-    case TOGGLE_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = !set_scrolling;
-      }
-      return false;
-    break;
-  case NAVIGATOR_TURBO:
-    if (record->event.pressed) {
-      navigator_turbo = true;
-    } else {
-      navigator_turbo = false;
-    }
-    return false;
-  case NAVIGATOR_AIM:
-    if (record->event.pressed) {
-      navigator_aim = true;
-    } else {
-      navigator_aim = false;
-    }
-    return false;
-  case NAVIGATOR_INC_CPI:
-    if (record->event.pressed) {
-        pointing_device_set_cpi(1);
-    }
-    return false;
-  case NAVIGATOR_DEC_CPI:
-    if (record->event.pressed) {
-        pointing_device_set_cpi(0);
-    }
-    return false;
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-    case HSV_0_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(0,255,255);
-      }
-      return false;
-    case HSV_74_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(74,255,255);
-      }
-      return false;
-    case HSV_169_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(169,255,255);
-      }
-      return false;
-  }
-  return true;
-}
 
 
 #include "led_map.c"
