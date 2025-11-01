@@ -190,22 +190,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_MOUSE] = LAYOUT_voyager(
-//    ┌────┬────┬───────────────┬──────┬──────┬────┐               ┌────────────┬─────────┬──────┬─────────┬────┬────┐
-//    │ no │ no │      no       │  no  │  no  │ no │               │     no     │  wh_l   │ btn3 │  wh_r   │ no │ no │
-//    ├────┼────┼───────────────┼──────┼──────┼────┤               ├────────────┼─────────┼──────┼─────────┼────┼────┤
-//    │ no │ no │ TOGGLE_SCROLL │  no  │  no  │ no │               │    wh_u    │  btn1   │ ms_u │  btn2   │ no │ no │
-//    ├────┼────┼───────────────┼──────┼──────┼────┤               ├────────────┼─────────┼──────┼─────────┼────┼────┤
-//    │ no │ no │  DRAG_SCROLL  │ btn2 │ btn1 │ no │               │    wh_d    │  ms_l   │ ms_d │  ms_r   │ no │ no │
-//    ├────┼────┼───────────────┼──────┼──────┼────┤               ├────────────┼─────────┼──────┼─────────┼────┼────┤
-//    │ no │ no │      no       │  no  │  no  │ no │               │ rght_SHIFT │ LGUI([) │  no  │ LGUI(]) │ no │ no │
-//    └────┴────┴───────────────┴──────┴──────┼────┼────┐   ┌──────┼────────────┼─────────┴──────┴─────────┴────┴────┘
-//                                            │ no │ no │   │ btn1 │    btn2    │
-//                                            └────┴────┘   └──────┴────────────┘
-  KC_NO , KC_NO , KC_NO         , KC_NO      , KC_NO      , KC_NO ,                          KC_NO          , KC_MS_WH_LEFT , KC_MS_BTN3 , KC_MS_WH_RIGHT , KC_NO , KC_NO,
-  KC_NO , KC_NO , TOGGLE_SCROLL , KC_NO      , KC_NO      , KC_NO ,                          KC_MS_WH_UP    , KC_MS_BTN1    , KC_MS_UP   , KC_MS_BTN2     , KC_NO , KC_NO,
-  KC_NO , KC_NO , DRAG_SCROLL   , KC_MS_BTN2 , KC_MS_BTN1 , KC_NO ,                          KC_MS_WH_DOWN  , KC_MS_LEFT    , KC_MS_DOWN , KC_MS_RIGHT    , KC_NO , KC_NO,
-  KC_NO , KC_NO , KC_NO         , KC_NO      , KC_NO      , KC_NO ,                          KC_RIGHT_SHIFT , LGUI(KC_LBRC) , KC_NO      , LGUI(KC_RBRC)  , KC_NO , KC_NO,
-                                                            KC_NO , KC_NO ,     KC_MS_BTN1 , KC_MS_BTN2
+//    ┌────┬────┬───────────────┬──────┬──────┬────┐                 ┌────────────┬─────────┬──────┬─────────┬────┬────┐
+//    │ no │ no │      no       │  no  │  no  │ no │                 │     no     │  wh_l   │ btn3 │  wh_r   │ no │ no │
+//    ├────┼────┼───────────────┼──────┼──────┼────┤                 ├────────────┼─────────┼──────┼─────────┼────┼────┤
+//    │ no │ no │ TOGGLE_SCROLL │  no  │  no  │ no │                 │    wh_u    │  btn1   │ ms_u │  btn2   │ no │ no │
+//    ├────┼────┼───────────────┼──────┼──────┼────┤                 ├────────────┼─────────┼──────┼─────────┼────┼────┤
+//    │ no │ no │  DRAG_SCROLL  │ btn2 │ btn1 │ no │                 │    wh_d    │  ms_l   │ ms_d │  ms_r   │ no │ no │
+//    ├────┼────┼───────────────┼──────┼──────┼────┤                 ├────────────┼─────────┼──────┼─────────┼────┼────┤
+//    │ no │ no │      no       │  no  │  no  │ no │                 │ rght_SHIFT │ LGUI([) │  no  │ LGUI(]) │ no │ no │
+//    └────┴────┴───────────────┴──────┴──────┼────┼──────┐   ┌──────┼────────────┼─────────┴──────┴─────────┴────┴────┘
+//                                            │ no │ lgui │   │ btn1 │    btn2    │
+//                                            └────┴──────┘   └──────┴────────────┘
+  KC_NO , KC_NO , KC_NO         , KC_NO      , KC_NO      , KC_NO ,                            KC_NO          , KC_MS_WH_LEFT , KC_MS_BTN3 , KC_MS_WH_RIGHT , KC_NO , KC_NO,
+  KC_NO , KC_NO , TOGGLE_SCROLL , KC_NO      , KC_NO      , KC_NO ,                            KC_MS_WH_UP    , KC_MS_BTN1    , KC_MS_UP   , KC_MS_BTN2     , KC_NO , KC_NO,
+  KC_NO , KC_NO , DRAG_SCROLL   , KC_MS_BTN2 , KC_MS_BTN1 , KC_NO ,                            KC_MS_WH_DOWN  , KC_MS_LEFT    , KC_MS_DOWN , KC_MS_RIGHT    , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO         , KC_NO      , KC_NO      , KC_NO ,                            KC_RIGHT_SHIFT , LGUI(KC_LBRC) , KC_NO      , LGUI(KC_RBRC)  , KC_NO , KC_NO,
+                                                            KC_NO , KC_LGUI ,     KC_MS_BTN1 , KC_MS_BTN2
 ),
 
 [_APP] = LAYOUT_voyager(
